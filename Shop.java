@@ -4,7 +4,6 @@ import java.util.List;
 public class Shop {
     int countCars = 10;
     int sales;
-    protected int traffic = 0;
     protected int sold = 0;
     protected int dailySalesPlan = 10;
     Seller customer = new Seller(this);
@@ -27,16 +26,8 @@ public class Shop {
         return cars;
     }
 
-    public int getBuyers() {
-        return traffic;
-    }
-
-    public void increaseTraffic() {
-        traffic++;
-    }
-
     public boolean planIsDone() {
-        return sold < dailySalesPlan;
+        return dailySalesPlan <= sold;
     }
 
     public int getSolds() {
