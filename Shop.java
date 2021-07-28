@@ -2,12 +2,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Shop {
-    int countCars = 10;
     int sales;
-    protected int sold = 0;
-    protected int dailySalesPlan = 10;
+    protected int sold;
     Seller customer = new Seller(this);
-    List<Car> cars = new ArrayList<>(countCars);
+    List<Car> cars = new ArrayList<>();
 
     public Shop(int dailyPlan) {
         sales = dailyPlan;
@@ -27,7 +25,7 @@ public class Shop {
     }
 
     public boolean planIsDone() {
-        return dailySalesPlan <= sold;
+        return sales <= sold;
     }
 
     public int getSolds() {
