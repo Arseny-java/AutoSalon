@@ -17,7 +17,7 @@ public class Shop {
     }
 
     public void acceptCars() {
-        customer.receiveCars();
+        customer.receiveCars(sales);
     }
 
     List<Car> getCar() {

@@ -8,18 +8,20 @@ public class Seller {
         this.shop = shop;
     }
 
-    public synchronized void receiveCars() {
+    public void receiveCars(int dailyPlan) {
 
         try {
-            while (!shop.planIsDone()) {
-                System.out.println("Завод выпустил автомобиль");
-                shop.getCar().add(new Car());
-                System.out.println("Машина поступила в салон");
+            for (int i = 0; i < dailyPlan; i++) {
+                System.out.printf("%s выпустил новый автомобиль\n", Thread.currentThread().getName());
                 Thread.sleep(PRODUCE_CAR_TIME);
-                notify();
-                wait();
+                System.out.println("Автомобиль поступил в продажу");
+                synchronized (this) {
+                    shop.getCar().add(new Car());
+                    notify();
+                }
             }
-        } catch (InterruptedException ignored) {
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
 
@@ -33,7 +35,6 @@ public class Seller {
                 shop.soldsNumber();
                 Thread.sleep(BUY_CAR_TIME);
                 System.out.println(Thread.currentThread().getName() + " купил автомобиль");
-                notify();
             }
         } catch (InterruptedException ignored) {
         }

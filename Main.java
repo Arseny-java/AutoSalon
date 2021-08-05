@@ -1,7 +1,7 @@
 import java.util.Random;
 
 public class Main {
-    static int dailyPlan = 5;
+    static int dailyPlan = 10;
     final static Shop shop = new Shop(dailyPlan);
     public static Random rand = new Random();
 
